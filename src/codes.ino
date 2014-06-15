@@ -9,8 +9,8 @@
 "I" ".."
 "J" "-.-."
 "K" "-.-"
-"L" "_" //???
-"M" "- -" //???
+"L" "_" //3*-
+"M" "--"
 "N" "-."
 "O" ". ."
 "P" "....."
@@ -28,28 +28,32 @@
 "2" "..-.."
 "3" "...-."
 "4" "....-"
-"5" "---" //???
+"5" "---"
 "6" "......"
 "7" "--.."
 "8" "-...."
 "9" "-..-"
-"0" "___" //???
+"0" ". ." //or 3- not sure which
 "." "..--.." //period
-":-" "KX" //colon dash
-":\"" "KQ" //colon quotation?
-":" "KO" //colon
-";" "SI" //semicolon
 "," ".-.-" //comma
 "?" "-..-." //interrogation
+"/" "..--"
+"(" "PN" //parenthesis (start)
+")" "PY" //parenthesis (end)
+":" "KO" //colon
+":-" "KX" //colon dash
+":\"" "KQ" //colon quotation?
+";" "SI" //semicolon
 "!" "---." //exclamation
-"/fraction1/" "E" //fraction line
-"/fraction2/" "UT" //fraction line
 "_" "DX" //dash
 "=" "BK" //double dash
 "-" "HX" //hyphen
 "'" "QX" //apostrophe
+"&" "ES"
 "$" "SX" //dollars
 "%" "OSO" //percent
+"/fraction1/" "E" //fraction line
+"/fraction2/" "UT" //fraction line
 "/cents/" "C" //cents
 "/pounds/" "LX" //pounds
 "/shillings/" "UT" //shillings
@@ -61,12 +65,9 @@
 "/notcode/" "E5" //not code
 "/underline/" "UX" //underline
 "/endline/" "UJ" //underline (end)
-"(" "PN" //parenthesis (start)
-")" "PY" //parenthesis (end)
 "/brackets/" "BX" //brackets
 "/quote/" "QN" //quotation (start)
 "/endquote/" "QJ" //quotation (end)
-
 "/repeat/" "DN" //repeat when sending
 "/understood/" "13" //I understand
 "/broadcast/" "23" //message to all offices
