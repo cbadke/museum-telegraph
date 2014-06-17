@@ -1,0 +1,4 @@
+const int DOT_LENGTH = 100; //ms
+const int INTER_LETTER_BREAK = DOT_LENGTH;
+const int INTER_WORD_BREAK = 2*DOT_LENGTH;
+const int INTER_SENTENCE_BREAK = 3*DOT_LENGTH;
