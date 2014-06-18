@@ -10,5 +10,6 @@ bool t = false;
 void loop() {
  if (!t) {
    t = true;
+   Serial.write("hello world");
  }
 }
