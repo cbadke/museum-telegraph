@@ -13,11 +13,19 @@
 
 #include "bit.h"
 
+typedef struct BQValue {
+    bit value;
+    struct BQValue* next;
+} BQValue;
+
 typedef struct {
     int size;
+    BQValue* head;
+    BQValue* tail;
 } BinaryQueue;
 
 BinaryQueue* bq_create();
+void bq_destroy(BinaryQueue* q);
 
 void bq_enqueue(BinaryQueue* q, bit val);
-void bq_dequeue(BinaryQueue* q);
+bit bq_dequeue(BinaryQueue* q);

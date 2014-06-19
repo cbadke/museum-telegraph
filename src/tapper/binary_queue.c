@@ -16,15 +16,35 @@
 #include "binary_queue.h"
 
 BinaryQueue* bq_create() {
-    BinaryQueue* q = (BinaryQueue*)malloc(sizeof(BinaryQueue));
-    q->size = 0;
+    BinaryQueue* q = (BinaryQueue*)calloc(1, sizeof(BinaryQueue));
     return q;
 }
 
+void bq_destroy(BinaryQueue* q) {
+    free(q);
+}
+
 void bq_enqueue(BinaryQueue* q, bit val) {
+    BQValue* v = (BQValue*)malloc(sizeof(BQValue));
+    v->value = val;
+    v->next = 0;
+
+    if (q->head == 0) {
+        q->head = v;
+    } else {
+        q->tail->next = v;
+    }
+    q->tail = v;
     q->size++;
 }
 
-void bq_dequeue(BinaryQueue* q) {
+bit bq_dequeue(BinaryQueue* q) {
+    BQValue* v = q->head;
+    bit retVal = v->value;
+
+    q->head = q->head->next;
     q->size--;
+
+    free(v);
+    return retVal;
 }

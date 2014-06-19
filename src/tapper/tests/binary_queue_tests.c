@@ -36,10 +36,39 @@ void dequeue_decreases_size_by_one() {
     assert_int(0, q->size, __FUNCTION__, __LINE__);
 }
 
+void dequeue_gets_enqueued_value() {
+    BinaryQueue* q = bq_create();
+
+    bq_enqueue(q, HIGH);
+    bit b = bq_dequeue(q);
+    assert_int(HIGH, b, __FUNCTION__, __LINE__);
+
+    bq_enqueue(q, LOW);
+    b = bq_dequeue(q);
+    assert_int(LOW, b, __FUNCTION__, __LINE__);
+}
+
+void can_queue_and_dequeue_multiple_values() {
+    BinaryQueue* q = bq_create();
+
+    bq_enqueue(q, HIGH);
+    bq_enqueue(q, LOW);
+    bq_enqueue(q, LOW);
+    bq_enqueue(q, HIGH);
+    bq_enqueue(q, LOW);
+    assert_int(HIGH, bq_dequeue(q), __FUNCTION__, __LINE__);
+    assert_int(LOW, bq_dequeue(q), __FUNCTION__, __LINE__);
+    assert_int(LOW, bq_dequeue(q), __FUNCTION__, __LINE__);
+    assert_int(HIGH, bq_dequeue(q), __FUNCTION__, __LINE__);
+    assert_int(LOW, bq_dequeue(q), __FUNCTION__, __LINE__);
+}
+
 int main(int argc, char** argv) {
     printf("Start tests...\n");
     default_length_is_zero();
     enqueue_increases_size_by_one();
     dequeue_decreases_size_by_one();
+    dequeue_gets_enqueued_value();
+    can_queue_and_dequeue_multiple_values();
     printf("Testing complete\n");
 }
