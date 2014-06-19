@@ -14,8 +14,13 @@
 #ifndef __BIT_H__
 #define __BIT_H__
 
+#ifndef HIGH
 #define HIGH 1
+#endif
+
+#ifndef LOW
 #define LOW 0
+#endif
 
 typedef char bit;
 

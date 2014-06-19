@@ -11,18 +11,52 @@
 //You should have received a copy of the GNU General Public License
 //along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+extern "C" {
 #include "config.h"
 #include "binary_queue.h"
 #include "mapper.h"
+}
+
+BinaryQueue* queue = 0;
 
 void setup() {
   Serial.begin(9600);
+
+  queue = bq_create();
+
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, LOW);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, LOW);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, LOW);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, LOW);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, LOW);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, LOW);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, LOW);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, LOW);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, LOW);
+  Serial.write("\n\0");
 }
 
-bool t = false;
 void loop() {
- if (!t) {
-   t = true;
-   Serial.write("hello world");
- }
+  if (queue->size > 0) {
+      bit x = bq_dequeue(queue);
+
+      if (x == HIGH) {
+          Serial.write("1\0");
+      } else {
+          Serial.write(" \0");
+      }
+      delay(DOT_LENGTH);
+  }
 }
