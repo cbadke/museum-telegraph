@@ -18,9 +18,11 @@ extern "C" {
 }
 
 BinaryQueue* queue = 0;
+const int led = 13;
 
 void setup() {
   Serial.begin(9600);
+  pinMode(led, OUTPUT);
 
   queue = bq_create();
 
@@ -57,6 +59,7 @@ void loop() {
       } else {
           Serial.write(" \0");
       }
+      digitalWrite(led, x);
       delay(DOT_LENGTH);
   }
 }
