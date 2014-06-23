@@ -11,7 +11,22 @@
 //You should have received a copy of the GNU General Public License
 //along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-const int DOT_LENGTH = 300; //ms
-const int INTER_LETTER_BREAK = DOT_LENGTH;
-const int INTER_WORD_BREAK = 2*DOT_LENGTH;
-const int INTER_SENTENCE_BREAK = 3*DOT_LENGTH;
+#ifndef __CONFIG_H__
+#define __CONFIG_H__
+
+#include <WString.h>
+
+const int DOT_LENGTH = 150; //ms
+const int INTER_LETTER_BREAK = 1;
+const int INTER_WORD_BREAK = 2;
+
+typedef struct{
+  String from;
+  String to;
+} Mapping;
+
+/*
+extern Mapping morseMappings[];
+*/
+
+#endif

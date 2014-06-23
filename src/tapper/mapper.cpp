@@ -14,32 +14,30 @@
 #include "config.h"
 #include "mapper.h"
 
-extern "C" {
-#include "binary_queue.h"
-}
+BinaryQueue* mapToDigital (String message) {
+  BinaryQueue* queue = bq_create();
 
-BinaryQueue* queue = 0;
-const int led = 13;
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, LOW);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, LOW);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, LOW);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, LOW);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, LOW);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, LOW);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, LOW);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, LOW);
+  bq_enqueue(queue, HIGH);
+  bq_enqueue(queue, LOW);
 
-void setup() {
-  pinMode(led, OUTPUT);
-}
-
-void loop() {
-
-  if (queue != 0 && queue->size > 0) {
-    bit x = bq_dequeue(queue);
-    digitalWrite(led, x);
-
-    delay(DOT_LENGTH);
-  } else {
-      if (queue != 0) {
-          bq_destroy(queue);
-          queue = 0;
-      }
-
-      queue = mapToDigital("SOS");
-      delay(10*DOT_LENGTH);
-  }
-
+  return queue;
 }

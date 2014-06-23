@@ -11,13 +11,15 @@
 //You should have received a copy of the GNU General Public License
 //along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-/*
+#ifndef __MAPPER_H__
+#define __MAPPER_H__
+
 #include <WString.h>
 
-typedef struct{
-    String from;
-    String to;
-} Mapping;
+extern "C" {
+#include "binary_queue.h"
+}
 
-extern Mapping morseMappings[];
-*/
+BinaryQueue* mapToDigital (String message);
+
+#endif
