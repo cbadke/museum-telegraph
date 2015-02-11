@@ -13,11 +13,19 @@
 
 #include "config.h"
 
+const int DOT_LENGTH = 150; //ms
+const int INTER_LETTER_BREAK = 1*DOT_LENGTH;
+const int INTER_WORD_BREAK = 2*DOT_LENGTH;
+
+const int MESSAGES_COUNT = 1;
+String Messages[] {
+  "... --- ...|... --- ...|... --- ..."
+};
 /*
+const int MAPPER_LENGTH = 54;
 Mapping morseMappings[] = {
   {":-", "KX"}, //colon dash
   {"-", "HX"}, //hyphen
-  {".", "..--.."}, //period
   {"/fraction1/", "E"}, //fraction line
   {"/fraction2/", "UT"}, //fraction line
   {"/cents/", "C"}, //cents
@@ -55,6 +63,7 @@ Mapping morseMappings[] = {
   {")", "PY"}, //parenthesis (end)
   {":", "KO"}, //colon
   {"/", "..--"},
+  {".", "..--.."}, //period
   {"A", ".-"},
   {"B", "-..."},
   {"C", ".. ."},
@@ -69,7 +78,8 @@ Mapping morseMappings[] = {
   {"L", "2-"},
   {"M", "--"},
   {"N", "-."},
-  {"O", ". ."},
+//  {"O", ". ."},
+  {"O", "---"},
   {"P", "....."},
   {"Q", "..-."},
   {"R", ". .."},

@@ -16,17 +16,21 @@
 
 #include <WString.h>
 
-const int DOT_LENGTH = 150; //ms
-const int INTER_LETTER_BREAK = 1;
-const int INTER_WORD_BREAK = 2;
+extern const int DOT_LENGTH; //ms
+extern const int INTER_LETTER_BREAK; //ms
+extern const int INTER_WORD_BREAK; //ms
 
+/*
 typedef struct{
   String from;
   String to;
 } Mapping;
 
-/*
+extern const int MAPPER_LENGTH;
 extern Mapping morseMappings[];
 */
+
+extern const int MESSAGES_COUNT;
+extern String Messages[];
 
 #endif

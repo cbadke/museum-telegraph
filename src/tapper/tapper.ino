@@ -12,34 +12,16 @@
 //along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "config.h"
-#include "mapper.h"
 
-extern "C" {
-#include "binary_queue.h"
-}
-
-BinaryQueue* queue = 0;
 const int led = 13;
 
 void setup() {
   pinMode(led, OUTPUT);
+  Serial.begin(9600);
 }
 
 void loop() {
-
-  if (queue != 0 && queue->size > 0) {
-    bit x = bq_dequeue(queue);
-    digitalWrite(led, x);
-
-    delay(DOT_LENGTH);
-  } else {
-      if (queue != 0) {
-          bq_destroy(queue);
-          queue = 0;
-      }
-
-      queue = mapToDigital("SOS");
-      delay(10*DOT_LENGTH);
-  }
-
+  Serial.write("bip\n");
+  Serial.write("SOS\n");
+  delay(10*DOT_LENGTH);
 }
