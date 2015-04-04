@@ -4,6 +4,7 @@ int main(int argc, char** argv)
 {
   if (argc != 2)
   {
+    printf("argc = %d\n", argc);
     printf("Invalid arg. Enter a dot-dash pattern\n");
     return -1;
   }
@@ -12,9 +13,15 @@ int main(int argc, char** argv)
   char* pattern = argv[1];
   while( pattern[i] != '\0' )
   {
-    if (pattern[i] != '.' && pattern[i] != '-')
+    if (pattern[i] != '.'//dot
+        && pattern[i] != '-'//dash (2.)
+        && pattern[i] != ' '//gap (.)
+        && pattern[i] != '_'//long dash (3.)
+        && pattern[i] != '='//really long dash (5.)
+       )
     {
-      printf("Pattern must only include . or -");
+      printf("found character '%c'\n", pattern[i]);
+      printf("Pattern must only include . - _ = or ' '.\n");
       return -1;
     }
     i++;
@@ -36,6 +43,31 @@ int main(int argc, char** argv)
     }
     else if (pattern[i] == '-')
     {
+      num <<= 1;
+      num ^= 0b1;
+      num <<= 1;
+      num ^= 0b1;
+    }
+    else if (pattern[i] == ' ')
+    {
+    }
+    else if (pattern[i] == '_')
+    {
+      num <<= 1;
+      num ^= 0b1;
+      num <<= 1;
+      num ^= 0b1;
+      num <<= 1;
+      num ^= 0b1;
+    }
+    else if (pattern[i] == '=')
+    {
+      num <<= 1;
+      num ^= 0b1;
+      num <<= 1;
+      num ^= 0b1;
+      num <<= 1;
+      num ^= 0b1;
       num <<= 1;
       num ^= 0b1;
       num <<= 1;

@@ -11,14 +11,17 @@
 //You should have received a copy of the GNU General Public License
 //along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "config.h"
+#ifndef __MAPPINGS_H__
+#define __MAPPINGS_H__
 
-const int DOT_LENGTH = 150; //ms
-const int DASH_LENGTH = 2*DOT_LENGTH;
-const int INTER_LETTER_BREAK = 1*DOT_LENGTH;
-const int INTER_WORD_BREAK = 2*DOT_LENGTH;
+#include <WString.h>
 
-const int MESSAGES_COUNT = 1;
-String Messages[] {
-  "SOS"
-};
+typedef struct{
+  String from;
+  String to;
+} Mapping;
+
+extern const int MAPPER_LENGTH;
+extern Mapping morseMappings[];
+
+#endif
