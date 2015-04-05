@@ -12,6 +12,7 @@
 //along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "config.h"
+#include "messages.h"
 #include "mappings.h"
 
 #define OUT_PIN 13

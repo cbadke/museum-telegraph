@@ -11,11 +11,20 @@
 //You should have received a copy of the GNU General Public License
 //along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef __CONFIG_H__
-#define __CONFIG_H__
+#ifndef __MESSAGES_H__
+#define __MESSAGES_H__
 
-#define DOT_LENGTH 150 //ms
-#define INTER_LETTER_BREAK 1*DOT_LENGTH
-#define INTER_WORD_BREAK 2*DOT_LENGTH
+extern const int MESSAGES_COUNT;
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+  //you are responsible to free() after
+  char* GetMessage(int index);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
