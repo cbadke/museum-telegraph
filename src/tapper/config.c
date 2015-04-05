@@ -14,9 +14,9 @@
 #include <stdlib.h>
 #include "config.h"
 
-const int MESSAGES_COUNT = 1;
+const int MESSAGES_COUNT = 3;
 char* Messages[] = {
-  "HELLO HOW ARE YOU?\0",
+  "HI\0",
   "THIS IS A GREAT DAY!\0",
   "THERE WILL BE A 20 MINUTE DELAY ON THE 1300 TO LETHBRIDGE.\0"
 };

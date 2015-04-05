@@ -14,7 +14,7 @@
 #ifndef __MAPPINGS_H__
 #define __MAPPINGS_H__
 
-typedef struct{
+typedef struct {
   char from;
   int to;
 } Mapping;

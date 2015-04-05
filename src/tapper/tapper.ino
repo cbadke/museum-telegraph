@@ -14,39 +14,54 @@
 #include "config.h"
 #include "mappings.h"
 
-const int OUT_PIN = 13;
+#define OUT_PIN 13
+#define MINUTE 60000
+unsigned long startNextMessage = 0;
 
 void tapMessage(char* message, int led);
 void tapCharacter(int character, int led);
+unsigned long nextInterval();
 
 void setup() {
   pinMode(OUT_PIN, OUTPUT);
 }
 
 void loop() {
-  tapMessage(Messages[2], OUT_PIN);
-  delay(5000);
+  unsigned long currentTime = millis();
+
+  if (startNextMessage == 0) {
+    startNextMessage = currentTime + nextInterval();
+  }
+  else if(startNextMessage < currentTime) {
+    tapMessage(Messages[0], OUT_PIN);
+    startNextMessage = currentTime + nextInterval();
+
+    //if overflow, recalculate next startTime
+    //currentTime will wrap every ~50 days.
+    if(startNextMessage < currentTime) {
+      startNextMessage = nextInterval();
+    }
+  }
 }
 
-void tapMessage(char* message, int led)
-{
+unsigned long nextInterval() {
+  return (unsigned long)random(5*MINUTE, 10*MINUTE);
+}
+
+void tapMessage(char* message, int led) {
   int messIdx = 0;
   int mapIdx = 0;
 
-  for(messIdx = 0; message[messIdx] != '\0'; ++messIdx)
-  {
+  for(messIdx = 0; message[messIdx] != '\0'; ++messIdx) {
     char currChar = message[messIdx];
-    if(currChar == ' ')
-    {
+    if(currChar == ' ') {
       delay(INTER_WORD_BREAK);
     }
-    else
-    {
-      for(mapIdx = 0; mapIdx < MAPPER_LENGTH; ++mapIdx)
-      {
-        if(currChar == morseMappings[mapIdx].from)
-        {
+    else {
+      for(mapIdx = 0; mapIdx < MAPPER_LENGTH; ++mapIdx) {
+        if(currChar == morseMappings[mapIdx].from) {
           tapCharacter(morseMappings[mapIdx].to, led);
+          break;
         }
       }
       delay(INTER_LETTER_BREAK);
@@ -54,10 +69,8 @@ void tapMessage(char* message, int led)
   }
 }
 
-void tapCharacter(int character, int led)
-{
-  while(character != 0)
-  {
+void tapCharacter(int character, int led) {
+  while(character != 0) {
     int bit = character & 0b1;
     character >>= 1;
 
