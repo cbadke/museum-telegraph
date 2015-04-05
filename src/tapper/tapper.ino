@@ -14,15 +14,57 @@
 #include "config.h"
 #include "mappings.h"
 
-const int led = 13;
+const int OUT_PIN = 13;
+
+void tapMessage(char* message, int led);
+void tapCharacter(int character, int led);
 
 void setup() {
-  pinMode(led, OUTPUT);
+  pinMode(OUT_PIN, OUTPUT);
 }
 
 void loop() {
-  digitalWrite(led, HIGH);
+  tapMessage(Messages[2], OUT_PIN);
   delay(5000);
-  digitalWrite(led, LOW);
-  delay(5000);
+}
+
+void tapMessage(char* message, int led)
+{
+  int messIdx = 0;
+  int mapIdx = 0;
+
+  for(messIdx = 0; message[messIdx] != '\0'; ++messIdx)
+  {
+    char currChar = message[messIdx];
+    if(currChar == ' ')
+    {
+      delay(INTER_WORD_BREAK);
+    }
+    else
+    {
+      for(mapIdx = 0; mapIdx < MAPPER_LENGTH; ++mapIdx)
+      {
+        if(currChar == morseMappings[mapIdx].from)
+        {
+          tapCharacter(morseMappings[mapIdx].to, led);
+        }
+      }
+      delay(INTER_LETTER_BREAK);
+    }
+  }
+}
+
+void tapCharacter(int character, int led)
+{
+  while(character != 0)
+  {
+    int bit = character & 0b1;
+    character >>= 1;
+
+    digitalWrite(OUT_PIN, bit);
+    delay(DOT_LENGTH);
+  }
+
+  digitalWrite(OUT_PIN, LOW);
+  return;
 }
