@@ -19,9 +19,10 @@
 #define MINUTE 60000
 unsigned long startNextMessage = 0;
 
+unsigned long nextInterval();
+char* getNextMessage();
 void tapMessage(char* message, int led);
 void tapCharacter(int character, int led);
-unsigned long nextInterval();
 
 void setup() {
   pinMode(OUT_PIN, OUTPUT);
@@ -34,7 +35,7 @@ void loop() {
     startNextMessage = currentTime + nextInterval();
   }
   else if(startNextMessage < currentTime) {
-    char* message = GetMessage(0);
+    char* message = getNextMessage();
     tapMessage(message, OUT_PIN);
     free(message);
 
@@ -50,6 +51,11 @@ void loop() {
 
 unsigned long nextInterval() {
   return (unsigned long)random(5*MINUTE, 10*MINUTE);
+}
+
+char* getNextMessage() {
+  int index = (int)random(0, MESSAGES_COUNT);
+  return getMessage(index);
 }
 
 void tapMessage(char* message, int led) {

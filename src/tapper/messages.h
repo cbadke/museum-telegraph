@@ -21,7 +21,7 @@ extern "C" {
 #endif
 
   //you are responsible to free() after
-  char* GetMessage(int index);
+  char* getMessage(int index);
 
 #ifdef __cplusplus
 }

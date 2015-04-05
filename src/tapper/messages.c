@@ -26,8 +26,7 @@ const char* const messages[] PROGMEM = {
   message_2
 };
 
-char* GetMessage(int index)
-{
+char* getMessage(int index) {
   if (index < 0 || index >= MESSAGES_COUNT) {
     index = 0;
   }
