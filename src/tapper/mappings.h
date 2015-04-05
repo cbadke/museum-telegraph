@@ -14,11 +14,9 @@
 #ifndef __MAPPINGS_H__
 #define __MAPPINGS_H__
 
-#include <WString.h>
-
 typedef struct{
-  String from;
-  String to;
+  char from;
+  int to;
 } Mapping;
 
 extern const int MAPPER_LENGTH;

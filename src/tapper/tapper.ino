@@ -12,16 +12,17 @@
 //along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "config.h"
+#include "mappings.h"
 
 const int led = 13;
 
 void setup() {
   pinMode(led, OUTPUT);
-  Serial.begin(9600);
 }
 
 void loop() {
-  Serial.write("bip\n");
-  Serial.write("SOS\n");
-  delay(10*DOT_LENGTH);
+  digitalWrite(led, HIGH);
+  delay(5000);
+  digitalWrite(led, LOW);
+  delay(5000);
 }

@@ -14,23 +14,11 @@
 #ifndef __CONFIG_H__
 #define __CONFIG_H__
 
-#include <WString.h>
-
-extern const int DOT_LENGTH; //ms
-extern const int INTER_LETTER_BREAK; //ms
-extern const int INTER_WORD_BREAK; //ms
-
-/*
-typedef struct{
-  String from;
-  String to;
-} Mapping;
-
-extern const int MAPPER_LENGTH;
-extern Mapping morseMappings[];
-*/
+#define DOT_LENGTH 150 //ms
+#define INTER_LETTER_BREAK 1*DOT_LENGTH
+#define INTER_WORD_BREAK 2*DOT_LENGTH
 
 extern const int MESSAGES_COUNT;
-extern String Messages[];
+extern char* Messages[];
 
 #endif

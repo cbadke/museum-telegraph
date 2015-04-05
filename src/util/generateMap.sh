@@ -20,7 +20,7 @@ do
     char=${BASH_REMATCH[1]}
     pattern=${BASH_REMATCH[2]}
     num=$(./dotDashToInt "$pattern")
-    echo "  {\"$char\", $num}," >> $generated_file
+    echo "  {'$char', $num}," >> $generated_file
   fi;
 done < "$filename"
 
