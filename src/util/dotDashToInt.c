@@ -59,6 +59,8 @@ int main(int argc, char** argv)
       num ^= 0b1;
       num <<= 1;
       num ^= 0b1;
+      num <<= 1;
+      num ^= 0b1;
     }
     else if (pattern[i] == '=')
     {

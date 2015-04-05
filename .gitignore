@@ -21,6 +21,7 @@
 *.exe
 *.out
 *.app
+src/util/dotDashToInt
 
 # Test Executables
 *_tests
