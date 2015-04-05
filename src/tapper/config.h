@@ -19,6 +19,16 @@
 #define INTER_WORD_BREAK 2*DOT_LENGTH
 
 extern const int MESSAGES_COUNT;
-extern char* Messages[];
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+  //you are responsible to free() after
+  char* GetMessage(int index);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

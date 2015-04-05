@@ -12,11 +12,27 @@
 //along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <stdlib.h>
+#include <avr/pgmspace.h>
 #include "config.h"
 
+#define MAX_MESSAGE_LENGTH 60
 const int MESSAGES_COUNT = 3;
-char* Messages[] = {
-  "HI\0",
-  "THIS IS A GREAT DAY!\0",
-  "THERE WILL BE A 20 MINUTE DELAY ON THE 1300 TO LETHBRIDGE.\0"
+const char message_0[] PROGMEM = "SOS";
+const char message_1[] PROGMEM = "THIS IS A GREAT DAY!";
+const char message_2[] PROGMEM = "THERE WILL BE A 20 MINUTE DELAY ON THE 1300 TO LETHBRIDGE.";
+const char* const messages[] PROGMEM = {
+  message_0,
+  message_1,
+  message_2
 };
+
+char* GetMessage(int index)
+{
+  if (index < 0 || index >= MESSAGES_COUNT) {
+    index = 0;
+  }
+
+  char* buffer = (char*)malloc(MAX_MESSAGE_LENGTH);
+  strcpy_P(buffer, (char*)pgm_read_word(&(messages[index])));
+  return buffer;
+}

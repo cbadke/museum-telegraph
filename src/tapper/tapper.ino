@@ -33,7 +33,10 @@ void loop() {
     startNextMessage = currentTime + nextInterval();
   }
   else if(startNextMessage < currentTime) {
-    tapMessage(Messages[0], OUT_PIN);
+    char* message = GetMessage(0);
+    tapMessage(message, OUT_PIN);
+    free(message);
+
     startNextMessage = currentTime + nextInterval();
 
     //if overflow, recalculate next startTime
