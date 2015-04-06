@@ -19,33 +19,44 @@
 #define MINUTE 60000
 unsigned long startNextMessage = 0;
 
+bool messageTimerElapsed();
+void resetMessageTimer();
+
 unsigned long nextInterval();
-char* getNextMessage();
+char* nextMessage();
 void tapMessage(char* message, int led);
 void tapCharacter(int character, int led);
 
 void setup() {
+  resetMessageTimer();
+
   pinMode(OUT_PIN, OUTPUT);
 }
 
 void loop() {
-  unsigned long currentTime = millis();
 
-  if (startNextMessage == 0) {
-    startNextMessage = currentTime + nextInterval();
-  }
-  else if(startNextMessage < currentTime) {
-    char* message = getNextMessage();
+  if(messageTimerElapsed()) {
+    char* message = nextMessage();
     tapMessage(message, OUT_PIN);
     free(message);
 
-    startNextMessage = currentTime + nextInterval();
+    resetMessageTimer();
+  }
+}
 
-    //if overflow, recalculate next startTime
-    //currentTime will wrap every ~50 days.
-    if(startNextMessage < currentTime) {
-      startNextMessage = nextInterval();
-    }
+bool messageTimerElapsed() {
+  unsigned long currentTime = millis();
+  return startNextMessage < currentTime;
+}
+
+void resetMessageTimer() {
+  unsigned long currentTime = millis();
+  startNextMessage = currentTime + nextInterval();
+
+  //if overflow, recalculate next startTime
+  //currentTime will wrap every ~50 days.
+  if(startNextMessage < currentTime) {
+    startNextMessage = nextInterval();
   }
 }
 
@@ -53,7 +64,7 @@ unsigned long nextInterval() {
   return (unsigned long)random(5*MINUTE, 10*MINUTE);
 }
 
-char* getNextMessage() {
+char* nextMessage() {
   int index = (int)random(0, MESSAGES_COUNT);
   return getMessage(index);
 }
