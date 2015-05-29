@@ -15,7 +15,8 @@
 #include "messages.h"
 #include "mappings.h"
 
-#define OUT_PIN 13
+#define OUT_PIN 12
+#define SECOND 1000
 #define MINUTE 60000
 unsigned long startNextMessage = 0;
 
@@ -28,14 +29,17 @@ void tapMessage(char* message, int led);
 void tapCharacter(int character, int led);
 
 void setup() {
-  resetMessageTimer();
-
   pinMode(OUT_PIN, OUTPUT);
 }
 
 void loop() {
 
   if(messageTimerElapsed()) {
+    char* station = "B";
+    tapMessage(station, OUT_PIN);
+
+    delay(30*SECOND);
+
     char* message = nextMessage();
     tapMessage(message, OUT_PIN);
     free(message);
@@ -61,11 +65,13 @@ void resetMessageTimer() {
 }
 
 unsigned long nextInterval() {
-  return (unsigned long)random(5*MINUTE, 10*MINUTE);
+  //return (unsigned long)random(5*MINUTE, 10*MINUTE);
+  return 17*MINUTE;
 }
 
 char* nextMessage() {
-  int index = (int)random(0, MESSAGES_COUNT);
+  //int index = (int)random(0, MESSAGES_COUNT);
+  int index = 0;
   return getMessage(index);
 }
 

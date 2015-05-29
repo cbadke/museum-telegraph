@@ -16,14 +16,10 @@
 #include "config.h"
 
 #define MAX_MESSAGE_LENGTH 60
-const int MESSAGES_COUNT = 3;
-const char message_0[] PROGMEM = "SOS";
-const char message_1[] PROGMEM = "THIS IS A GREAT DAY!";
-const char message_2[] PROGMEM = "THERE WILL BE A 20 MINUTE DELAY ON THE 1300 TO LETHBRIDGE.";
+const int MESSAGES_COUNT = 1;
+const char message_0[] PROGMEM = "TRAIN LINE UP 1732 MIXED FREIGHT 1717 FREIGHT 1542 FREIGHT STOP END";
 const char* const messages[] PROGMEM = {
-  message_0,
-  message_1,
-  message_2
+  message_0
 };
 
 char* getMessage(int index) {

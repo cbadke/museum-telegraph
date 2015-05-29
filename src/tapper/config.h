@@ -14,7 +14,7 @@
 #ifndef __CONFIG_H__
 #define __CONFIG_H__
 
-#define DOT_LENGTH 150 //ms
+#define DOT_LENGTH 75 //ms
 #define INTER_LETTER_BREAK 1*DOT_LENGTH
 #define INTER_WORD_BREAK 2*DOT_LENGTH
 
